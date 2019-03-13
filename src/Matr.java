@@ -63,7 +63,7 @@ public class Matr {
     }
 
     private static int[][] create_B (int A[][]) {
-        int B[][] = new int[A.length][A[0].length];
+        int B[][] = new int[A.length][A[0].length], s=0;
          for (int i = 0; i<B.length; i++) {
              for (int j = 0; j < B[i].length; j++) {
                  B[i][j] = 0;
@@ -71,14 +71,18 @@ public class Matr {
          }
          for (int i = 0; i<A.length; i++){
             for (int j = 0; j<A[i].length; j++){
+                s = 0;
                 for (int k = -1; k<=1; k++){
                     for (int l = -1; l<=1; l++){
                         try {
                             if ((A[i][j] == A[i+k][j+l]) && !((k == 0) && (l == 0))) {
-                                B[i][j] = 1;
+                                s++;
                             }
                         } catch (IndexOutOfBoundsException ignored) {}
                     }
+                }
+                if (s>=2) {
+                    B[i][j] = 1;
                 }
             }
         }
