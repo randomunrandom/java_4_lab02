@@ -11,8 +11,8 @@ public class Matr {
     }
 
 
-    private static int[][] Str_2d_to_Int_2d(String in[]) {
-        int mas[][] = new int[(int) Math.sqrt(in.length)][(int) Math.sqrt(in.length)];
+    private static int[][] Str_2d_to_Int_2d(String[] in) {
+        int[][] mas = new int[(int) Math.sqrt(in.length)][(int) Math.sqrt(in.length)];
         for(int  i = 0; i<Math.sqrt(in.length); i++) {
             for(int j = 0; j<Math.sqrt(in.length); j++){
                 mas[i][j] = Integer.parseInt(in[(int) (Math.sqrt(in.length) * j + i)]);
@@ -21,7 +21,7 @@ public class Matr {
         return mas;
     }
 
-    private static void print_2d_arr(int arr[][], int len_i, int len_j) {
+    private static void print_2d_arr(int[][] arr, int len_i, int len_j) {
         int max_el = 0;
         int val = 0;
         for (int i = 0; i < len_i; i++) {
@@ -53,18 +53,19 @@ public class Matr {
 
         for (int  j = 0; j<arr.length; j++) {
             System.out.print(j + "  |");
-            for (int i = 0; i < arr.length; i++) {
-                System.out.print(arr[i][j]);
-                for (int k = 0; k < (max-String.valueOf(arr[i][j]).length()); k++) System.out.print(" ");
+            for (int[] ints : arr) {
+                System.out.print(ints[j]);
+                for (int k = 0; k < (max - String.valueOf(ints[j]).length()); k++) System.out.print(" ");
             }
             System.out.println();
         }
         System.out.println();
     }
 
-    private static int[][] create_B (int A[][]) {
-        int B[][] = new int[A.length][A[0].length], s=0;
-         for (int i = 0; i<B.length; i++) {
+    private static int[][] create_B (int[][] A) {
+        int[][] B = new int[A.length][A[0].length];
+        int s;
+        for (int i = 0; i<B.length; i++) {
              for (int j = 0; j < B[i].length; j++) {
                  B[i][j] = 0;
              }
